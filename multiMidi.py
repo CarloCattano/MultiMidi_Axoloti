@@ -3,6 +3,7 @@ from mido.ports import multi_receive
 from mido import Message
 
 out_port = 'Axoloti Core MIDI 1'  
+outCh = 6   # 6+1  SENDS MIDI TO AXOLOTI ON CHANNEL NR 7
 
 input_ports=["MicroBrute MIDI 1","Launch Control XL MIDI 1"] # LIST OF CONTROLLERS TO MERGE INTO ONE CH
 
@@ -19,11 +20,11 @@ try:
       if hasattr(message, "note"):
        currNote = message.note      #HOLD THE CURRENT NOTE AND PASS IT THROUGH TO THE AXOLOTI ON CH 7
        if message.type == 'note_on':
-        on = Message('note_on',channel=6,velocity=127,note=currNote)
+        on = Message('note_on',channel=outCh,velocity=currNote.velocity,note=currNote)
         port.send(on)
 
        if message.type == 'note_off':
-        off = Message('note_off',channel=6,note=currNote)
+        off = Message('note_off',channel=outCh,note=currNote)
         port.send(off)
 
        if hasattr(message, "control_change"):
