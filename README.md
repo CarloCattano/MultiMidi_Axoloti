@@ -6,7 +6,7 @@
 #### I will slowly develope an untility and make it usable in any setup as long as my free time allows me 
  
 #### - You will rtmidi :
-           pip3 install python-rtmidi
+           pip3 install python-rtmidi mido
 ##### And depending on your raspberry pi operating system some aditional libraries and jack1 too probably . ( will confirm all dependencies once the general script is polished)
 
          python multiMidi.py
