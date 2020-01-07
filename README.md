@@ -1,6 +1,6 @@
 # Use your raspberry pi as a usb Midi Hub to use several controllers with your axoloti
 
-### this script uses mido<url>https://pypi.org/project/mido/</url> library to create a simple example of passing midi to the raspberry pi . inspired by @logsol idea
+### this script uses mido<a href "https://pypi.org/project/mido/">mido</a> library to create a simple example of passing midi to the raspberry pi . inspired by @logsol idea
 ### of merging several midi channels into one to overcome Axoloti usb hub limitations 
 
 #### I will slowly develope an untility and make it usable in any setup as long as my free time allows me 
