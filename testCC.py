@@ -8,11 +8,10 @@ outCh = 6
 input_ports=["Launch Control XL 2"]         
 
 played_notes = []
+print("played_notes : ", played_notes)   
 
 print("inputs " ,mido.get_input_names())
-print("----------------------------------- \n ")
 print(mido.get_output_names())
-print("----------------------------------- \n ")
 
 
 ports = [mido.open_input(name) for name in input_ports] 
