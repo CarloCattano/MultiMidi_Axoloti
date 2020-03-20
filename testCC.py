@@ -33,11 +33,11 @@ try:
           off = Message('note_off',channel=outCh,note=currNote.note)
           port.send(off)
       if message.type == 'control_change' :
-        cc = Message('control_change',channel=outCh,control=message.control)
+        cc = Message('control_change',channel=outCh,control=message.control,value=message.value)
         port.send(message)
-        # print("Sending : ", message)
-        # print("Sending : ", cc)
-        # print("----------------------")
+        print("Sending : ", message)
+        print("Sending : ", cc)
+        print("----------------------")
        
 except KeyboardInterrupt:
   pass 
