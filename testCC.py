@@ -1,43 +1,20 @@
+import sys
 import mido
 from mido.ports import multi_receive
 from mido import Message
+                      
+print("\n MIDI INPUTS : " ,mido.get_input_names())
+print("\n MIDI OUTPUTS : ",mido.get_output_names())
 
-out_port = 'loopMIDI 1'                       
-outCh = 6                         
+if len(sys.argv) < 4:
+    print("\n ------- \n PLEASE PROVIDE  [input_port out_port outCh] (1-16) 3 ARGUMENTS \n ---------\n")
+elif len(sys.argv) > 3 :
+    print("\n starting..............\n","-------------------")
+    input_ports = sys.argv[1]
+    out_port = sys.argv[2]                      
+    outCh = sys.argv[3]
 
-input_ports=["Launch Control XL 2"]         
+    print("input_ports",input_ports)
+    print("out_port",out_port)
+    print("outCh",outCh)
 
-played_notes = []
-print("played_notes : ", played_notes)   
-
-print("inputs " ,mido.get_input_names())
-print(mido.get_output_names())
-
-
-ports = [mido.open_input(name) for name in input_ports] 
-print("ports ",ports)
-for port in ports:
-  print('Using {}'.format(port))
-print('Waiting for messages...')
-
-try:
-  with mido.open_output(out_port, autoreset=True) as port:
-    for message in multi_receive(ports):
-                                                        # SEE ALL RECEIVED MESSAGES 
-      if hasattr(message, "note"):
-        currNote = message                               #HOLD THE CURRENT NOTE AND PASS IT THROUGH TO THE AXOLOTI ON CH 7
-        if message.type == 'note_on':
-          on = Message('note_on',channel=outCh,velocity=currNote.velocity,note=currNote.note)
-          port.send(on)
-        if message.type == 'note_off':
-          off = Message('note_off',channel=outCh,note=currNote.note)
-          port.send(off)
-      if message.type == 'control_change' :
-        cc = Message('control_change',channel=outCh,control=message.control,value=message.value)
-        port.send(message)
-        print("Sending : ", message)
-        print("Sending : ", cc)
-        print("----------------------")
-       
-except KeyboardInterrupt:
-  pass 

@@ -7,8 +7,6 @@ outCh = 6
 
 input_ports=["MicroBrute MIDI 1","Launch Control XL MIDI 1"]
 
-played_notes = []
-
 print("inputs " ,mido.get_input_names())
 print("----------------------------------- \n ")
 print(mido.get_output_names())
@@ -23,10 +21,9 @@ print('Waiting for messages...')
 
 try:
   with mido.open_output(out_port, autoreset=True) as port:
-    for message in multi_receive(ports):
-      print(message)                                                  # SEE ALL RECEIVED MESSAGES
+    for message in multi_receive(ports):                                     
       if hasattr(message, "note"):
-        currNote = message                               #HOLD THE CURRENT NOTE AND PASS IT THROUGH TO THE AXOLOTI ON CH 7
+        currNote = message                               
         if message.type == 'note_on':
           on = Message('note_on',channel=outCh,velocity=currNote.velocity,note=currNote.note)
           port.send(on)
@@ -37,7 +34,6 @@ try:
       if message.type == 'control_change' :
         cc = Message('control_change',channel=outCh,control=message.control,value=message.value)
         port.send(cc)
-        # print("Sending : ", message)
         print("Sending : ", cc)
         print("----------------------")
 
