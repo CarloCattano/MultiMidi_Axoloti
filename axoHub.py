@@ -30,10 +30,10 @@ try:
                 if message.type == 'note_on':
                     on = Message('note_on',channel=outCh,velocity=currNote.velocity,note=currNote.note)
                     port.send(on)
-
                 if message.type == 'note_off':
                     off = Message('note_off',channel=outCh,note=currNote.note)
                     port.send(off)
+
             if message.type == 'control_change' :
                 cc = Message('control_change',channel=outCh,control=message.control,value=message.value)
                 port.send(cc)
