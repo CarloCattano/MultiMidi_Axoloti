@@ -2,7 +2,9 @@ import mido
 from mido.ports import multi_receive
 from mido import Message
 
-out_port = 'Axoloti Core MIDI 1'
+to_Axoloti = 'Axoloti Core MIDI 1'
+to_Keyboard = 'MicroBrute MIDI 0'
+
 outCh = 6
 
 input_ports=["MicroBrute MIDI 1","Launch Control XL MIDI 1"]
@@ -12,15 +14,19 @@ print("----------------------------------- \n ")
 print(mido.get_output_names())
 print("----------------------------------- \n ")
 
-
 ports = [mido.open_input(name) for name in input_ports]
-print("ports ",ports)
+
+print("\n input ports ",ports)
+
 for port in ports:
   print('Using {}'.format(port))
-print('Waiting for messages...')
+
+print('\n ----- \n Waiting for messages...\n -----\n')
+
+local_off = Message('control_change',channel=14,control=122,value=0)
 
 try:
-  with mido.open_output(out_port, autoreset=True) as port:
+  with mido.open_output(to_Axoloti, autoreset=True) as port:
     for message in multi_receive(ports):                                     
       if hasattr(message, "note"):
         currNote = message                               
