@@ -5,9 +5,9 @@ from mido import Message
 to_Axoloti = 'Axoloti Core MIDI 1'
 to_Keyboard = 'MicroBrute MIDI 0'
 
-outCh = 6
+outCh = 6 # This is the note channel I want to send to the axoloti +1 so its channel 7 
 
-input_ports=["MicroBrute MIDI 1","Launch Control XL MIDI 1"]
+input_ports=["MicroBrute MIDI 1","Launch Control XL MIDI 1"] # add your controller name as its shown on the console
 
 print("inputs " ,mido.get_input_names())
 print("----------------------------------- \n ")
@@ -37,7 +37,8 @@ try:
         if message.type == 'note_off':
           off = Message('note_off',channel=outCh,note=currNote.note)
           port.send(off)
-      if message.type == 'control_change' :
+          
+      if message.type == 'control_change' :     
         cc = Message('control_change',channel=outCh,control=message.control,value=message.value)
         port.send(cc)
         print("Sending : ", cc)
