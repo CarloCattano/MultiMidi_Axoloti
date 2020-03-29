@@ -1,4 +1,4 @@
-# Raspberry Pi as a USB Midi Hub for<a href="https://github.com/axoloti/axoloti/releases/tag/2.0.0/"> Axoloti 2.0 </a>
+# Raspberry Pi as a USB Midi Hub for<a href="https://github.com/axoloti/axoloti/releases/tag/2.0.0/"> Axoloti</a>
 
 ### this script uses <a href="https://pypi.org/project/mido/">mido</a> library to create a simple example of passing midi to the raspberry pi . inspired by @logsol idea
 ### of merging several midi channels into one to overcome Axoloti usb hub limitations 
