@@ -5,8 +5,11 @@
 
 #### I will slowly develop an utility and make it usable in any setup as long as my free time allows me 
  
-#### - You will need rtmidi and mido :
-           pip3 install python-rtmidi mido
+#### - You will need the mido library :
+           pip3 install mido
+                 or
+           python3 -m pip install mido 
+           
 ##### And depending on your raspberry pi operating system some aditional libraries and jack1 too probably . ( will confirm all dependencies once the general script is polished)
 
          python multiMidi.py
