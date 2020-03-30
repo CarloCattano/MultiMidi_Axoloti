@@ -25,13 +25,13 @@ for port in ports:
 print('\n ----- \n Waiting for messages...\n -----\n')
 
 local_off = Message('control_change',channel=13,control=122,value=0)
+
 with mido.open_output(to_Keyboard, autoreset=True) as kb:
   time.sleep(1)
   kb.send(local_off)
 
 try:
   with mido.open_output(to_Axoloti, autoreset=True) as port:
-<<<<<<< HEAD
     for message in multi_receive(ports):
         if hasattr(message, "note"):
           currNote = message
@@ -47,7 +47,7 @@ try:
           port.send(cc)
           #print("Sending : ", cc)
           #print("----------------------")
-=======
+          
     for message in multi_receive(ports):                                     
       if hasattr(message, "note"):
         currNote = message                               
@@ -64,7 +64,5 @@ try:
         port.send(cc)
         print("Sending : ", cc)
         print("----------------------")
-
->>>>>>> 5b337c53be466cb34b8e40265498c4533d06cfda
 except KeyboardInterrupt:
   pass
